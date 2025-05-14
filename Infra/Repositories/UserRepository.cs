@@ -29,7 +29,7 @@ internal class UserRepository(IDbConnectionFactory dbConnectionFactory,
         return result;
     }
 
-    public async Task<ApplicationUser?> GetUserByEmailAsync(string email, string password)
+    public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
     {
         using var connection = dbConnectionFactory.CreateConnection();
         var query = userQuery.GetGetUserByEmailQuery();

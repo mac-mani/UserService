@@ -14,9 +14,15 @@ builder.Services
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
     );
 
+// 1. For Swagger
+builder.Services.AddEndpointsApiExplorer();
+// 2. Swagger
+builder.Services.AddSwaggerGen();
 
-
-
+/* builder.Services.AddCors(opt=>{
+    opt.AddDefaultPolicy(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+});
+ */
 var app = builder.Build();
 
 // Exception Handler
@@ -24,6 +30,13 @@ app.UseGlobalExceptionHandler();
 
 // Routing
 app.UseRouting();
+
+// 3. Swagger (Adds endpoint that can serve the swagger.json)
+app.UseSwagger();
+// 4. Swagger UI
+app.UseSwaggerUI();
+
+app.UseCors(cfg=> cfg.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
 //Auth
 app.UseAuthentication();

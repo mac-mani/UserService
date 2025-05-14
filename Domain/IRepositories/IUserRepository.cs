@@ -6,5 +6,5 @@ public interface IUserRepository
 {
     Task<ApplicationUser?> InsertUserAsync(ApplicationUser user);
     Task<ApplicationUser?> UpdateUserAsync(ApplicationUser user, string userId);
-    Task<ApplicationUser?> GetUserByEmailAsync(string email, string password);
+    Task<ApplicationUser?> GetUserByEmailAsync(string email);
 }
